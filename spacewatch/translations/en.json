@@ -1,0 +1,44 @@
+{
+  "alert": {
+    "critical": {
+      "body": "{path} is {percent}% full. Only {free} free of {total}. Free up space soon.",
+      "title": "Disk space critical"
+    },
+    "recovered": {
+      "body": "{path} is back below the warning threshold ({percent}% used, {free} free).",
+      "title": "Disk space recovered"
+    },
+    "warning": {
+      "body": "{path} is {percent}% full. {free} free of {total}.",
+      "title": "Disk space low"
+    }
+  },
+  "settings": {
+    "critical_threshold": {
+      "description": "Usage percentage that sends a critical notification.",
+      "label": "Critical threshold"
+    },
+    "filesystems": {
+      "description": "One path per entry, optionally followed by ' = label' (for example, '/boot = Boot'). Use \\= for a literal ' = ' in a path. Root (/) is included by default and can be removed.",
+      "label": "Filesystems"
+    },
+    "notify_recovery": {
+      "description": "Notify when a filesystem drops back below the warning threshold.",
+      "label": "Notify on recovery"
+    },
+    "poll_seconds": {
+      "description": "How often to check disk usage, in seconds.",
+      "label": "Check interval"
+    },
+    "warning_threshold": {
+      "description": "Usage percentage that sends a warning notification.",
+      "label": "Warning threshold"
+    }
+  },
+  "widget": {
+    "capacity": "{free} free of {total}",
+    "mount": "{path} {percent}%",
+    "no_data": "--",
+    "waiting": "Waiting for disk statistics. Check that the system monitor is enabled."
+  }
+}

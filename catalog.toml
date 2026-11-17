@@ -1,0 +1,15 @@
+# This source's plugin index. Noctalia reads it to list and compatibility-check
+# plugins without cloning the whole repository. Add one [[plugin]] row per
+# plugin directory.
+
+[[plugin]]
+id = "k-rutkowski/spacewatch"
+name = "Spacewatch"
+version = "0.1.0"
+author = "Krzysztof Rutkowski"
+license = "WTFPL"
+icon = "disk"
+description = "Warns when a filesystem is running low on free space."
+plugin_api = 22
+tags = ["system", "bar", "service", "utility"]
+dependencies = []
