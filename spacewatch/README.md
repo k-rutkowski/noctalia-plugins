@@ -21,6 +21,7 @@ capacity in its tooltip.
 ## Features
 
 - Monitors the filesystems you list; `/` is included by default.
+- Shows filesystems in the configured order in both the bar and tooltip.
 - Optional label per filesystem, shown in the bar instead of the path.
 - Bar widget shows the full path (or label) and usage percentage of every
   monitored filesystem.

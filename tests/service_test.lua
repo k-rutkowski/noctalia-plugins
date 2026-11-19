@@ -107,9 +107,9 @@ check(#errors == 0, "initial sample should not send a critical error")
 check(intervals[1] == 2000, "service should start with the warmup interval")
 check(type(state.report) == "table", "service should publish a report")
 check(#state.report.mounts == 2, "filesystems without a sample should be omitted")
-check(state.report.mounts[1].path == "/home", "report should be sorted by usage")
-check(state.report.mounts[1].level == 1, "home should be at warning level")
-check(state.report.mounts[2].path == "/", "reports should include healthy filesystems")
+check(state.report.mounts[1].path == "/", "report should follow configured filesystem order")
+check(state.report.mounts[2].level == 1, "home should be at warning level")
+check(state.report.mounts[2].path == "/home", "reports should include healthy filesystems in configured order")
 check(state.report.updatedAt == now, "report should carry the sample time")
 
 update()
@@ -212,6 +212,17 @@ check(findMount([[/mnt/slash\=name]]).label == "Slash", "escaped backslashes sho
 check(findMount([[/mnt/backslash\plain]]) ~= nil, "backslashes before ordinary characters should remain in the path")
 check(findMount("relative/path") == nil, "relative paths should be ignored")
 check(#state.report.mounts == 7, "each configured path should appear once")
+for index, path in ipairs({
+  "/",
+  "/mnt/extra",
+  "/home/kr/backups",
+  "/mnt/data=archive",
+  "/mnt/space = name",
+  [[/mnt/slash\=name]],
+  [[/mnt/backslash\plain]],
+}) do
+  check(state.report.mounts[index].path == path, "report should preserve configured order at index " .. index)
+end
 
 config.filesystems = { "/mnt/data=archive", [[/mnt/space \= name = Space]] }
 onConfigChanged()

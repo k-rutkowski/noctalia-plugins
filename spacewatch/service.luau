@@ -221,13 +221,6 @@ local function sample()
     end
   end
 
-  table.sort(readings, function(left, right)
-    if left.usagePercent == right.usagePercent then
-      return left.path < right.path
-    end
-    return left.usagePercent > right.usagePercent
-  end)
-
   noctalia.state.set("report", {
     mounts = readings,
     updatedAt = noctalia.nowMs(),
